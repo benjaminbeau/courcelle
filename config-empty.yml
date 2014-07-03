@@ -1,0 +1,10 @@
+---
+  email: "yourmail@stuff.com"
+  password: "secret"
+  company: 'company'
+  api_token: '################'
+  flows:
+    - { name: flowName,       token: ###############################" }
+  em_port: 6001
+  bot_nick: "nick"
+

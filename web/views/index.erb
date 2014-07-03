@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flower - Your friendly garden gnome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flower is a chatbot built for Flowdock chatrooms. It does awesome things.">
+    <meta name="author" content="The Mynewsdesk dev team. https://coderwall.com/team/mynewsdesk">
+
+    <link href="/flat-ui/css/bootstrap.css" rel="stylesheet">
+    <link href="/flat-ui/css/flat-ui.css" rel="stylesheet">
+    <style>
+      .commands .btn { margin-bottom: 10px; }
+    </style>
+     <link rel="shortcut icon" href="/flat-ui/images/favicon.ico">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="hero-unit">
+        <h1>Soundboard!!!!!!!!!!!!!!!</h1>
+      </div>
+
+      <form method="POST" action="/sound">
+        <div class="row">
+          <div class="span12 commands">
+            <h2>They took our jobs!</h2>
+            <% bang(sound_commands_by_popularity).each do |cmd| %>
+              <input type="submit" class="btn btn-large btn-<%= %w(default primary info danger success warning inverse).sample %>" name="command" value="<%= cmd %>" />
+            <% end %>
+          </div>
+        </div>
+      </form>
+      <hr>
+
+      <footer>
+        <p>&copy; Mynewsdesk 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+  </body>
+</html>

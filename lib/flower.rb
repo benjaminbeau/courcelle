@@ -1,0 +1,90 @@
+# -*- encoding : utf-8 -*-
+require "rubygems"
+require "bundler/setup"
+require 'json'
+require 'eventmachine'
+require 'em-http'
+require 'yajl'
+
+class Flower
+  require File.expand_path(File.join(File.dirname(__FILE__), 'message'))
+  require File.expand_path(File.join(File.dirname(__FILE__), 'stream'))
+  require File.expand_path(File.join(File.dirname(__FILE__), 'rest'))
+  require File.expand_path(File.join(File.dirname(__FILE__), 'command'))
+  require File.expand_path(File.join(File.dirname(__FILE__), 'config'))
+  require File.expand_path(File.join(File.dirname(__FILE__), 'local_server'))
+  require File.expand_path(File.join(File.dirname(__FILE__), 'stats'))
+
+  COMMANDS = {} # We are going to load available commands in here
+  LISTENERS = {} # We are going to load available monitors in here
+
+  Dir.glob("lib/commands/**/*.rb").each do |file|
+    next if ENV['SKIP_SPOTIFY'] && file[/spotify/]
+    require File.expand_path(File.join(File.dirname(__FILE__), "..", file))
+  end
+
+  attr_accessor :stream, :rest, :users, :pid, :flows
+
+  def initialize
+    self.pid      = Process.pid
+    self.stream   = Stream.new(self)
+    self.rest     = Rest.new
+    self.users    = {}
+    self.flows    = {}
+  end
+
+  def boot!
+    EM.run {
+      Flower::Config.flows.each do |hash|
+        self.flows[hash['name']] = hash['token']
+      end
+      get_users rest.get_users
+      stream.start
+      EventMachine::start_server("localhost", Flower::Config.em_port, LocalServer) { |s| s.set_flower(self) }
+    }
+  end
+
+  def respond_to(message)
+    if !user_exists?(message.user_id)
+      reload_users!
+    end
+    Thread.new do
+      message.sender = users[message.user_id]
+      message.flower = self
+      message.rest = rest
+      Thread.exit if !message.sender # Don't break when the mnd CLI tool is posting to chat
+      output = nil
+      message.messages.each do |sub_message|
+        sub_message.argument = output if output.present?
+        if sub_message.bot_message?
+          Flower::Command.delegate_command(sub_message)
+          output = sub_message.output
+        end
+        unless message.from_self? || message.internal
+          Flower::Command.trigger_listeners(sub_message)
+          # Flower::Command.register_stats(sub_message)
+        end
+      end
+    end
+  end
+
+  def get_users(users_json)
+    users_json.each do |user|
+      self.users[user["id"]] = {
+        id:     user["id"],
+        nick:   user["nick"],
+        name:   user["name"],
+        email:  user["email"],
+        avatar: user["avatar"]
+      }
+    end
+  end
+
+  def user_exists?(user_id)
+    users.include? user_id
+  end
+
+  def reload_users!
+    get_users rest.get_users
+  end
+end
