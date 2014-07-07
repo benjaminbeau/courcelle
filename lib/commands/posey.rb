@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-class LePot < Flower::Command
+class Posey < Flower::Command
   respond_to "posey"
 
   def self.description
@@ -7,6 +7,8 @@ class LePot < Flower::Command
   end
 
   def self.respond(message)
-   message.reply("http://i61.tinypic.com/2ywfvgk.jpg")
+	imgs=[
+"http://i61.tinypic.com/2ywfvgk.jpg"]
+   message.say(imgs.sample)
   end
 end

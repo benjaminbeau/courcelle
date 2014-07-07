@@ -4,6 +4,10 @@ class Insult < Flower::Command
 
   def self.respond(message)
     victim = message.argument
+    if victim =~ /ben/i
+      message.reply "Suce toi!"
+      return
+    end
     insult = INSULTS.sample.gsub(/{victim}/, victim).gsub(/{sender}/, message.sender[:nick])
     message.say(insult) unless victim =~ /flou|lou|all|everyone/i
   end

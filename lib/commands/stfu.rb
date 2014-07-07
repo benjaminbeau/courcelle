@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Stfu < Flower::Command
   listen_to /dota/i, "LoL", "League of Legends"
-  TA_GUEULE_REGEXP = /(ta gueule|tg)\s*courcelle|courcelle[:,\s]\s*(ta gueule|tg)/i
+  TA_GUEULE_REGEXP = /(ta gueule|tg)\s*bot_nickname|bot_nickname[:,\s]\s*(ta gueule|tg)/i
   listen_to TA_GUEULE_REGEXP
 
   def self.listen(message)

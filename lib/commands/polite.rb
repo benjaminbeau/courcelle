@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Polite < Flower::Command
-  POLITE_REGEXP = /(merci|thanks|thx|tks)[,]*\scourcelle|courcelle[,:]*\s(merci|thanks|thx|tks)/i
+  POLITE_REGEXP = /(merci|thanks|thx|tks)[,]*\sbot_nickname|bot_nickname[,:]*\s(merci|thanks|thx|tks)/i
   listen_to POLITE_REGEXP
 
   def self.listen(message)
