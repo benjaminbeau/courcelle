@@ -7,7 +7,7 @@ class Jimmy < Flower::Command
   end
 
   def self.respond(message)
-	imgs=["http://p3.storage.canalblog.com/37/37/263150/10971214.jpg",
+	imgs=["http://p3.storage.canalblog.com/37/37/263150/10971214.jpg", "http://oi59.tinypic.com/2hygqh.jpg",
 "Regarde les logs !!!"]
    message.say(imgs.sample)
   end
