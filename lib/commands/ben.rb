@@ -7,7 +7,7 @@ class Ben < Flower::Command
   end
 
   def self.respond(message)
-	imgs=["http://quoteclub.org/wp-content/uploads/2014/04/if-you-pay-peanuts-you-get-monkeys-James-Goldsmith.jpg"]
+	imgs=["http://i58.tinypic.com/juivc6.jpg","http://i59.tinypic.com/2lm7yc4.jpg"]
 	message.say(imgs.sample)
   end
 end
