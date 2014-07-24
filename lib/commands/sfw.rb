@@ -7,10 +7,7 @@ class Sfw < Flower::Command
   end
 
   def self.respond(message)
-    if message.nick =~ /UagusniT/
-	 message.say("http://stuffpoint.com/kate-upton/image/298407-kate-upton-kate-upton-2.jpg", tags: 'oups')
-	return		
-     end
+
 	imgs=["http://flaubert.univ-rouen.fr/bovary/bovary_6/notices/sacre-co.jpg",
 "http://bellesignature.b.e.pic.centerblog.net/49efcc2a.gif",
 "http://petitemimine.p.e.pic.centerblog.net/fflxfafy.jpg",

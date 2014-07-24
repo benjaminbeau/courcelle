@@ -15,6 +15,10 @@ class Sfd < Flower::Command
 "http://ljdchost.com/lAbW178.gif",
 "http://ljdchost.com/P0BHoL3.gif",
 "http://ljdchost.com/44n2hIw.gif",
+"http://forum-images.hardware.fr/images/perso/xavier_om.gif",
+"http://i0.kym-cdn.com/photos/images/newsfeed/000/085/444/1282786204310.jpg",
+"http://i0.kym-cdn.com/photos/images/newsfeed/000/118/087/2468904593_6a7c692ab6.jpg",
+"http://i3.kym-cdn.com/photos/images/newsfeed/000/118/079/rainbow_puke_hitler_by_naigora49-d31znyi.png",
 ":fire::fire::fire::fire::fire::fire:"]
 	message.say(imgs.sample)
   end
