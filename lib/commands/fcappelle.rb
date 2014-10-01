@@ -3,7 +3,7 @@ require 'typhoeus'
 require 'nokogiri'
 
 class Fcappelle < Flower::Command
-  respond_to "maitreCapello"
+  respond_to "maitreCapello","maîtrecapello","MaîtreCapello","maitrecapello"
 
   def self.description
     description = <<-HERE

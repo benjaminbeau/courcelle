@@ -16,10 +16,6 @@ usage : !r [subreddit]
     subreddit = message.argument.split(' ').first
     url = "http://www.reddit.com/r/#{subreddit}.json"
     response = Typhoeus::Request.get(url)
-    if message.nick =~ /Alekss/
-      message.say("On fait plus dans le crade ici...", tags: 'sorry')
-      return
-    end
     if response.code != 200
       message.say "Ce subreddit n'existe pas."
       return
