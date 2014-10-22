@@ -20,7 +20,7 @@ usage : !commitstrip
     title = document.at_css('h1.entry-title a').text
 
     if img = document.at_css('.post .entry-content p img')
-      description = "#{title} (#{img[:src]})"
+      description = "#{title}\n#{img[:src]}"
       message.say(description)
     end
   end
