@@ -7,7 +7,8 @@ class Camille < Flower::Command
   end
 
   def self.respond(message)
-	imgs=["https://www.youtube.com/watch?v=v_1FTno4miM"]
-   message.say(imgs.sample)
+    imgs=["surement habitué a manger de la teub au petit dej", "avant d'étouffer et mourir dans ton vomi",
+          "en maths on utilise que x et y par consequent a et b c'est faux","j'ai pas vu la tortue geniale par consequent ca ne peut qu'etre un fake"]
+	message.say(imgs.sample)
   end
 end
