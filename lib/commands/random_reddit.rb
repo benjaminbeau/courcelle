@@ -1,13 +1,13 @@
 # -*- encoding : utf-8 -*-
 require 'typhoeus'
 
-class Reddit < Flower::Command
+class RandomReddit < Flower::Command
   respond_to 'rr'
 
   def self.description
     description = <<-HERE
 Affiche une image aléatoire d'un subreddit aléatoire
-usage : !r [subreddit]
+usage : !random
     HERE
     return description
   end
