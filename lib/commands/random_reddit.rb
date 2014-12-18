@@ -7,7 +7,7 @@ class RandomReddit < Flower::Command
   def self.description
     description = <<-HERE
 Affiche une image aléatoire d'un subreddit aléatoire
-usage : !random
+usage : !rr
     HERE
     return description
   end
@@ -26,7 +26,7 @@ usage : !random
     children = json['data']['children']
     images = []
     children.each do |e|
-      images << "#{e['data']['url']} - #{e['data']['title']}"
+      images << "#{e['data']['url']} - #{e['data']['title']}\ndans : #{subreddit_url}"
     end
     message.say(images.sample, tags: 'reddit')
   end
