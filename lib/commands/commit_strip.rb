@@ -1,16 +1,14 @@
 # -*- encoding : utf-8 -*-
 require 'typhoeus'
-require 'typhoeus'
 
 class CommitStrip < Flower::Command
   respond_to "commitstrip"
 
   def self.description
-    description = <<-HERE
+    <<-HERE
 Affiche le dernier commitstrip.com avec sa description
 usage : !commitstrip
     HERE
-    return description
   end
 
   def self.respond(message)
